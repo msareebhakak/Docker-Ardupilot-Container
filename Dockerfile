@@ -26,15 +26,18 @@ RUN apt-get update \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 
+RUN  apt-get update \
+  && apt-get install -y wget \
+  && rm -rf /var/lib/apt/lists/*
 # =================================
   
 
 # Install Gazebo
+    
 RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list' && \
     wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add - && \
     apt-get update && \
-    apt-get install -y gazebo9 libgazebo9-dev && \
-    apt-get install -y ros-melodic-gazebo-ros-pkgs ros-melodic-gazebo-ros-control
+    apt-get install -y gazebo7
 
 
 # =================================
